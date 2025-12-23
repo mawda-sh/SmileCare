@@ -1,0 +1,437 @@
+
+/* إعادة تعيين بسيطة لضمان التناسق */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  font-family: 'cairo';
+  font-size: 13px;
+}
+
+/* الألوان الأساسية (المطابقة لصورة IMG_7771.jpeg) */
+:root {
+    --dark-bg: #f5f3fa; /* خلفية الصفحة الخارجية */
+    --purple-main: #184776; /* الخلفية الداكنة للوحة الإدخال */
+    --purple-medium: #548fd7; /* خلفية خانات الوقت */
+    --green-btn: #23bd1e; /* زر Next (الأخضر) */
+    
+    --white-bg: #ffffff; 
+    --main-blue: #007bff; 
+    
+    --text-light: #ffffff; 
+    --text-dark: #333333; 
+    
+    --text-placeholder-new: #a09cb0; /* لون نص الـ Placeholder */
+    --input-bg-new: #2a253b; /* لون خلفية حقول الإدخال */
+    
+    --slot-bg: var(--purple-medium); /* خانات الوقت بنفس لون الخلفية المتوسطة */
+    --slot-text: var(--text-light); 
+    --slot-hover: #584a75; /* لون أفتح قليلاً عند التمرير */
+    --border-color: #5d6e83; 
+}
+
+body {
+    background-color: var(--dark-bg); 
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    direction: rtl; 
+    font-family: 'cairo';
+   
+}
+.logo img{
+    width: 200px;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.header-links{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.btn{
+    background-image: linear-gradient(90deg, #56CCF2 0%, #4169E1 100%);
+    width: 1000px;
+    height: 60px;
+    padding: 6px 30px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'cairo';
+
+}
+.btn:hover{
+background-image: linear-gradient(90deg, #4169E1 0% ,#56CCF2 100%);
+
+}
+
+
+/* 2. حاوية المواعيد الرئيسية */
+.appointment-container {
+    display: flex;
+    max-width: 1200px;
+    width: 90%;
+    margin: 50px auto;
+    background-color: var(--purple-medium); 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); 
+   
+}
+/* تنسيق حقول الإدخال و Select (نوع الخدمة) */
+
+.appointment-form .service-select { /* إضافة الكلاس الجديد هنا */
+    width: 100%;
+    padding: 18px 15px; 
+    margin-bottom: 20px;
+    border: 1px solid transparent; 
+    background-color: var(--input-bg-new); 
+   color: #ced5d7;
+    border-radius: 8px; 
+    font-size: 1.1em;
+    font-weight: 500;
+    text-align: right;
+    direction: rtl;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s; 
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); 
+    
+    /* خصائص خاصة بـ Select لضمان تناسقه */
+    appearance: none; /* إزالة سهم المتصفح الافتراضي */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* إضافة سهم مخصص باستخدام خلفية الصورة */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23c4d0e0" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: left 15px center; 
+    padding-left: 45px !important;
+}
+
+
+.appointment-form select option {
+    background-color: var(--panel-main);
+    color: var(--text-light);
+
+}
+
+/* 3. لوحة الإدخال (الجانب الأيمن) */
+.clinic-info-form {
+    flex: 1;
+    background-color: var(--purple-main); 
+    padding: 50px 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+}
+
+.clinic-header {
+    text-align: center; /* تظهر في المنتصف في الصورة */
+    margin-bottom: 50px;
+}
+
+.tooth-icon {
+    font-size: 3.5em;
+    color: var(--text-light);
+    display: block; 
+    margin: 0 auto 8px auto; 
+}
+
+.clinic-info-form h1 {
+    font-size: 1.9em;
+    font-weight: 500;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+
+/* تنسيق حقول الإدخال (الاسم، البريد) */
+.appointment-form input {
+    width: 100%;
+    padding: 18px 15px; 
+    margin-bottom: 25px;
+    border: none; 
+    background-color: var(--input-bg-new); /* لون داكن مميز */
+    color: var(--text-light);
+    border-radius: 8px; 
+    font-size: 1em;
+    text-align: right;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); 
+}
+
+.appointment-form input::placeholder {
+    color: var(--text-placeholder-new); 
+}
+.appointment-form input:hover{
+    background-color: rgb(18, 54, 122);
+}
+.appointment-form :hover{
+    background-color: rgb(18, 54, 122);
+}
+
+
+.date-input {
+    /* أيقونة التقويم */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23a09cb0" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center; /* الأيقونة على اليمين كما في الصورة */
+    padding-left: 15px !important; 
+    padding-right: 55px !important;
+}
+
+
+.next-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    background-color:rgb(84, 150, 197);
+    color: var(--text-light);
+    font-size: 1.2em;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 30px;
+    box-shadow: 0 0px 0px rgba(16, 71, 139, 0.4); 
+}
+.next-btn:hover{
+    background-color: #0b7a0e;
+}
+
+.clinic-info-form::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 5px; /* الخط الأبيض السفلي في الصورة */
+    background-color: var(--white-bg);
+    opacity: 0.2;
+}
+
+/* 4. لوحة المواعيد (الجانب الأيسر) */
+.time-slots {
+    flex: 2;
+    padding: 50px;
+    background-color: var(--purple-medium);
+    color: var(--text-light);
+}
+
+.time-slots h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.6em; /* حجم أصغر قليلاً يناسب الصورة */
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.slots-group {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.slot {
+    padding: 12px 0;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--input-bg-new); /* لون مطابق لحقول الإدخال */
+    color: var(--slot-text); 
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.slot:hover {
+    background-color: var(--slot-hover); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* تنسيق الموعد المحدد */
+.slot.selected {
+    background-color: var(--green-btn) !important;
+    color: var(--text-light) !important;
+    border: 1px solid var(--green-btn);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.single-slot {
+    grid-column: span 1;
+}
+
+.spacer {
+    height: 1px;
+    background-color: var(--text-light); /* خط فاصل أبيض واضح */
+    opacity: 0.5;
+    margin: 40px 0;
+}
+
+.submit-btn {
+    width: 30%;
+    display: block;
+    margin: 40px auto 0 auto;
+    padding: 15px 30px;
+    border: 2px solid var(--text-light);
+    background-color: transparent;
+    color: var(--text-light);
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+   background-color: #123c62;
+   margin-top: 100px;
+   
+}
+
+.submit-btn:hover {
+   background-color: #14740b;
+   
+}
+
+/* رسالة النجاح والإخفاء للتفاعل */
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white-bg);
+    color: var(--text-dark);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000; 
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+/* -------- Laptop -------- */
+@media screen and (max-width: 1200px) {
+    .appointment-container {
+        flex-direction: column; /* لوح الإدخال والموعد فوق بعض */
+        width: 95%;
+    }
+
+    .clinic-info-form, .time-slots {
+        padding: 30px 20px;
+    }
+
+    .slots-group {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .submit-btn {
+        width: 40%;
+    }
+}
+
+/* -------- Tablet -------- */
+@media screen and (max-width: 900px) {
+    .navbar .header-links {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .navbar .logo h1 {
+        font-size: 14px;
+        top: 10px;
+    }
+
+    .appointment-container {
+        flex-direction: column;
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .clinic-info-form, .time-slots {
+        padding: 20px;
+    }
+
+    .slots-group {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .next-btn, .submit-btn {
+        width: 80%;
+        margin: 20px auto;
+    }
+}
+
+/* -------- Mobile -------- */
+@media screen and (max-width: 600px) {
+   
+    .navbar {
+        height: auto;
+        padding: 10px 0;
+    }
+    .btn{
+        width:60% ;
+    }
+    .logo img{
+        width: 150px;
+    }
+    .navbar .header-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .navbar .header-links a {
+        margin: 5px 0;
+        font-size: 12px;
+    }
+
+    .navbar .logo h1 {
+        font-size: 12px;
+        top: 5px;
+        text-align: center;
+    }
+
+    .appointment-container {
+        flex-direction: column;
+        width: 90%;        /* أقل من كامل الشاشة */
+        max-width: 400px;  /* يركّز المحتوى ويمنع تمدده */
+        margin: 20px auto; /* مركّز في الوسط */
+        padding: 10px;
+    }
+
+    .clinic-info-form, .time-slots {
+        padding: 15px;
+    }
+
+    .slots-group {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .next-btn, .submit-btn {
+        width: 90%;
+        margin: 15px auto;
+        font-size: 0.9em;
+        padding: 12px;
+    }
+
+    .slot {
+        padding: 10px 0;
+        font-size: 0.9em;
+    }
+
+}

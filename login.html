@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز موعد</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="shortcut icon" href="images/favicon.svg" type="image/svg+xml">
+   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+</head>
+<body>
+     <div class="logo">
+            <img src="images/logo-removebg-preview.png" alt="">
+        </div>
+     <div class="header-links">
+       <a href="index.html" class="btn" style="color: white;">الرئيسية</a>
+        </div> 
+    <main class="appointment-container">
+
+        <section class="clinic-info-form">
+            <div class="clinic-header">
+                <span class="tooth-icon">
+                    &#x1F9B7; 
+                </span>
+                <h1>SmileCare - سمايل كير</h1>
+            </div>
+
+            <form class="appointment-form">
+                
+                 <input type="text" placeholder="يوم-شهر-سنة" class="date-input">
+                <input type="text" placeholder="أدخل اسمك">
+                <input type="email" placeholder="أدخل بريدك الإلكتروني">
+                <input type="tel" placeholder="رقم الهاتف">
+               <input type="text" placeholder="تاريخ الحجز" class="date-input">
+               <select name="service_type" class="service-select" required>
+                    <option value="" disabled selected>اختر نوع الخدمة</option>
+                    <option value="فحص_روتيني">فحص روتيني وتنظيف</option>
+                    <option value="تبييض_اسنان">تبييض الأسنان</option>
+                    <option value="زراعةالاسنان">زراعة الاسنان</option>
+                   <option value="تقويم الاسنان">تقويم الاسنان</option>
+                  
+                    <option value="استشارة_تجميلية">استشارة تجميلية</option>
+                </select>
+
+
+
+
+               <button type="submit" class="next-btn">التالي</button>
+            </form>
+        </section>
+
+       
+
+   
+        <section class="time-slots">
+            <h2>المواعيد الصباحية والمسائية</h2>
+
+            <div class="slots-group morning-slots">
+                <button class="slot">11:00 ص</button>
+                <button class="slot">11:30 ص</button>
+                <button class="slot">12:00 م</button>
+                <button class="slot">12:30 م</button>
+                <button class="slot">01:00 م</button>
+
+                <button class="slot">01:30 م</button>
+                <button class="slot">02:00 م</button>
+                <button class="slot">02:30 م</button>
+                <button class="slot">03:00 م</button>
+                <button class="slot">03:15 م</button>
+
+                <button class="slot">03:30 م</button>
+                <button class="slot">03:45 م</button>
+                <button class="slot">04:00 م</button>
+                <button class="slot">04:15 م</button>
+                <button class="slot">04:30 م</button>
+
+                <button class="slot single-slot">04:45 م</button>
+            </div>
+
+            <div class="spacer"></div>
+
+            <div class="slots-group evening-slots">
+                <button class="slot">05:00 م</button>
+                <button class="slot">05:30 م</button>
+                <button class="slot">06:00 م</button>
+                <button class="slot">06:15 م</button>
+                <button class="slot">06:30 م</button>
+
+                <button class="slot">06:45 م</button>
+                <button class="slot">07:00 م</button>
+                <button class="slot">07:15 م</button>
+                <button class="slot">07:30 م</button>
+                <button class="slot">07:45 م</button>
+
+
+<button class="slot">08:00 م</button>
+                <button class="slot">08:15 م</button>
+                <button class="slot">08:30 م</button>
+                <button class="slot">08:45 م</button>
+            </div>
+
+            <button class="submit-btn">تاكيد الحجز</button>
+
+        </section>
+
+    </main>
+
+    <script>
+        // المتغيرات العالمية لتخزين البيانات 
+let selectedTime = ""; 
+ 
+// 1. الدالة الرئيسية التي تعمل عند تحميل الصفحة 
+document.addEventListener('DOMContentLoaded', function() { 
+    setupEventListeners(); 
+}); 
+ 
+// 2. دالة إعداد المستمعين للأحداث (Event Listeners) 
+function setupEventListeners() { 
+    // مستمع لزر التالي 
+    const nextBtn = document.querySelector('.next-btn'); 
+    if (nextBtn) { 
+        nextBtn.addEventListener('click', handleNextStep); 
+    } 
+ 
+    // مستمع لأزرار المواعيد 
+    const slots = document.querySelectorAll('.slot'); 
+    slots.forEach(slot => { 
+        slot.addEventListener('click', function() { 
+            handleSlotSelection(this); 
+        }); 
+    }); 
+ 
+    // مستمع لزر تأكيد الحجز 
+    const submitBtn = document.querySelector('.submit-btn'); 
+    if (submitBtn) { 
+        submitBtn.addEventListener('click', handleFinalSubmit); 
+    } 
+} 
+ 
+// 3. دالة معالجة الخطوة الأولى (البيانات) 
+function handleNextStep(e) { 
+    e.preventDefault(); 
+     
+    const inputs = document.querySelectorAll('.appointment-form input'); 
+    const name = inputs[1].value.trim(); 
+    const phone = inputs[3].value.trim(); 
+ 
+    if (name === "" || phone === "") { 
+        alert("يرجى إدخال الاسم ورقم الهاتف أولاً"); 
+        return; 
+    } 
+ 
+    activateSlotsSection(); 
+} 
+ 
+// 4. دالة تفعيل قسم المواعيد 
+function activateSlotsSection() { 
+    const timeSlotsSection = document.querySelector('.time-slots'); 
+    const nextBtn = document.querySelector('.next-btn'); 
+ 
+    timeSlotsSection.classList.add('active'); 
+    nextBtn.innerText = "تم حفظ البيانات ✓"; 
+    nextBtn.style.backgroundColor = "#2ecc71"; 
+} 
+ 
+// 5. دالة معالجة اختيار الموعد 
+function handleSlotSelection(button) { 
+    // إزالة التحديد السابق 
+    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected')); 
+     
+    // تحديد الزر الحالي 
+    button.classList.add('selected'); 
+    selectedTime = button.innerText; 
+} 
+ 
+// 6. دالة معالجة الإرسال النهائي 
+function handleFinalSubmit() { 
+    if (selectedTime === "") { 
+        alert("الرجاء اختيار وقت الموعد أولاً"); 
+        return; 
+    } 
+ 
+    const name = document.querySelectorAll('.appointment-form input')[1].value; 
+    showSuccessPopup(name, selectedTime); 
+    markSlotAsBooked(); 
+} 
+ 
+// 7. دالة إظهار رسالة النجاح المنبثقة 
+function showSuccessPopup(userName, time) { 
+    const overlay = document.createElement('div'); 
+    overlay.id = 'successOverlay'; 
+    overlay.innerHTML = ` 
+        <div class="success-card"> 
+            <div class="icon-box">✓</div> 
+            <h2>تم تأكيد الحجز بنجاح!</h2> 
+            <p>عزيزي <strong>${userName}</strong>، تم تسجيل موعدك بنجاح.</p> 
+            <p>الموعد المختار: <strong>${time}</strong></p> 
+            <button onclick="closePopup()">إغلاق</button> 
+        </div> 
+    `; 
+    document.body.appendChild(overlay); 
+} 
+ 
+// 8. دالة تحويل الموعد إلى "محجوز" 
+function markSlotAsBooked() { 
+    const currentSlot = document.querySelector('.slot.selected'); 
+    if (currentSlot) { 
+        currentSlot.style.background = "#e74c3c"; 
+        currentSlot.innerText = "محجوز"; 
+        currentSlot.style.pointerEvents = "none"; 
+        currentSlot.classList.remove('selected'); 
+        selectedTime = ""; // تصفير الاختيار 
+    } 
+} 
+ 
+// 9. دالة إغلاق الرسالة 
+function closePopup() { 
+    const overlay = document.getElementById('successOverlay'); 
+    if (overlay) overlay.remove(); 
+}
+    </script>
+
+</body>
+</html>

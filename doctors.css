@@ -1,0 +1,438 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'cairo';
+}
+body{
+    background-image: url(images/hero-bg.png);
+    /* يُفضل إضافة خاصية لضمان التجاوب على الخلفية */
+    background-size: cover;
+    background-attachment: fixed; /* لتثبيت الخلفية عند التمرير */
+    background-repeat: no-repeat;
+    
+    
+}
+
+/* --- تنسيقات شريط التنقل (Navbar) --- */
+.navbar{
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    display: flex; /* Use flexbox for better alignment */
+    justify-content: space-between; /* Space between logo and links/toggle */
+    align-items: center;
+    padding: 0 5%; /* Use percentage for padding to ensure better spacing */
+    box-shadow: 0 2px 6px rgb(2, 2, 2 ,0.4);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+
+}
+.menu-toggle{
+  display: none; /* مخفي في الديسكتوب */
+  font-size: 30px;
+  cursor: pointer;
+}
+.logo img{
+    width: 80px;
+    height: 80px;
+
+}
+.logo h1 {
+    color: navy;
+    font-size: 30px; /* Adjust font size for better fit */
+    margin-right: 10px; /* Add margin to separate from logo image */
+    white-space: nowrap; /* Prevent the title from wrapping */
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.header-links{
+   /* position:absolute ; */ /* Remove absolute positioning for desktop */
+   /* top: 23px; */
+   /* left: 120px; */
+   display: flex; /* Use flex for desktop links */
+   align-items: center;
+   /* Add margin-right to push the links away from the logo */
+   margin-right: auto; 
+   margin-left: 50px; /* Add margin to separate links from the button */
+}
+.header-links a{
+    text-decoration: none;
+    margin: 0 15px; /* Increase margin between links */
+    color: navy;
+    font-family: 'cairo';
+    font-size: 18px;
+    font-weight: bold;
+}
+.header-links :hover{
+    color:rgb(68, 68, 245) ;
+}
+.btn{
+    background-image: linear-gradient(90deg, #56CCF2 0%, #4169E1 100%);
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+.btn:hover{
+        background-image: linear-gradient(90deg, #4169E1 0% ,#56CCF2 100%);
+
+}
+
+/* --- تنسيقات قسم الأطباء --- */
+.head{
+    text-align: center;
+    color:rgb(4, 4, 97);
+    margin-top: 100px;
+    font-family: 'cairo';
+}
+.line {
+  width: 50%;              /* طول الخط */
+  height: 2px;             /* سماكة الخط */
+  background-color: #1976d2; /* لون الخط */
+  margin: 20px auto;       /* يركّز في الوسط */
+  border: none;            /* نلغي حدود hr الافتراضية */
+}
+.mid h1{
+    text-align: center;
+    color: rgb(4, 4, 97);
+    margin-top: 20px;
+    font-family: 'cairo';
+    padding: 0 20px;
+    animation: mid 2s linear infinite alternate;
+}
+@keyframes mid {
+  0%   { color: #0d47a1; } 
+  25%  { color: #1565c0; } 
+  50%  { color: #1976d2; } 
+  75%  { color: #42a5f5; } 
+  100% { color: #90caf9; } 
+}
+
+.p-head {
+    text-align: center;
+    color: rgb(4, 4, 97);
+    margin-top: 20px;
+    font-family: 'cairo';
+    padding: 0 20px;
+    max-width: 800px; /* تحديد أقصى عرض للفقرة */
+    margin: 0 auto;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap; /* السماح للبطاقات بالنزول لسطر جديد */
+    justify-content: center; /* توسيط البطاقات */
+    padding: 20px;
+}
+.blog-head h2{
+    animation: head 2s linear infinite alternate;
+}
+@keyframes head {
+  0%   { color: #0d47a1; } 
+  25%  { color: #1565c0; } 
+  50%  { color: #1976d2; } 
+  75%  { color: #42a5f5; } 
+  100% { color: #90caf9; } 
+}
+.doctor-card{
+    width: 300px; /* تقليل العرض قليلاً */
+    text-align: center;
+    background-color: white;
+    margin: 15px;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 5px 8px rgba(3, 27, 42, 0.5);
+    transition: transform 0.3s ease; /* إضافة حركة انتقال لتحسين الهوفر */
+}
+.doctor-card:hover{
+    transform: translateY(-5px);
+}
+.doctor-card img{
+    width: 100%; /* استخدام عرض 100% داخل البطاقة */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    max-height: 250px; /* تحديد أقصى ارتفاع */
+    /* لضمان تغطية الصورة للمساحة المخصصة */
+    border-radius: 8px 8px 0 0;
+    margin: 10px 0; /* تعديل الهامش */
+    padding: 0;
+}
+.doctor-card h3{
+    color: darkblue;
+    font-family: 'cairo';
+}
+.doctor-card p{
+    color: #161da0;
+    font-family: 'cairo';
+}
+.doctor-card a{
+    margin: 10px;
+}
+
+/* ==================================== */
+/* استعلامات الوسائط (Media Queries)          */
+/* ==================================== */
+
+/* 💻 تنسيقات الأجهزة اللوحية (Tablet) - أقصى عرض 1024px */
+@media (max-width: 1024px) {
+    .header-links a {
+        font-size: 16px;
+        margin: 0 8px;
+    }
+    .btn {
+        padding: 6px 20px;
+    }
+    .doctor-card {
+        width: 45%; /* لعرض بطاقتين في السطر */
+    }
+}
+
+/* 📱 تنسيقات الهواتف الكبيرة (Large Phone) - أقصى عرض 768px */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* جعل عناصر Navbar تحت بعضها */
+        height: auto; /* السماح بتغيير الارتفاع */
+        padding-bottom: 10px;
+    }
+    .logo h1 {
+        font-size: 20px;
+    }
+    .header-links {
+        margin-top: 10px;
+        /* استخدام flex-wrap للسماح للروابط بالنزول سطر */
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+    .header-links a {
+        margin: 5px 8px; /* زيادة الهامش لجعل الروابط قابلة للنقر بسهولة */
+        font-size: 15px;
+    }
+    .btn {
+        margin-top: 5px;
+        order: -1; /* لجعل زر الحجز يظهر في مكان مختلف إذا لزم الأمر */
+    }
+    .head, .mid {
+        margin-top: 150px; /* زيادة الهامش بسبب حجم Navbar الأكبر */
+    }
+    .doctor-card {
+        width: 100%; /* لعرض بطاقة واحدة في السطر */
+        max-width: 400px;
+    }
+}
+
+
+/* 📱 تنسيقات الهواتف الصغيرة (Small Phone) - أقصى عرض 480px */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: row-reverse; /* لضمان بقاء اللوجو في طرف والهامبرجر في طرف */
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .logo {
+        justify-content: center;
+        width: 100%;
+    }
+    .logo h1 {
+        font-size: 18px;
+    }
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+    .header-links a {
+        font-size: 14px;
+        margin: 5px 6px;
+    }
+    .btn {
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+    .mid{
+        margin-top: 0;
+    }
+    .p-head p {
+        font-size: 14px;
+    }
+     .menu-toggle {
+        float: right;
+        display: block; /* Show hamburger menu */
+        order: 1; /* Place it on the left side for RTL layout */
+    }
+    .blog-head h2 {
+    font-size: 5px;
+}
+}
+/* -------------------------------------- */
+/* 1. تنسيق قسم الأخبار الرئيسي         */
+/* -------------------------------------- */
+.blog-section {
+    padding: 60px 20px; /* مسافة داخلية علوية وسفلية للقسم بالكامل */
+    background-color: #f8f9fa; /* لون خلفية فاتح لتمييز القسم */
+    text-align: center;
+}
+
+.blog-head h2 {
+    font-size: 40px;
+    color: #000a6d; /* لون أزرق داكن (Navy) */
+    margin-bottom: 50px;
+    font-family: 'cairo';
+}
+
+.blog-cards-container {
+    display: flex;
+    justify-content: center; /* توسيط البطاقات في المنتصف */
+    flex-wrap: wrap; /* للسماح بالالتفاف على شاشات الهواتف */
+    gap: 30px; /* مسافة بين البطاقات */
+}
+
+/* -------------------------------------- */
+/* 2. تنسيق بطاقة الخبر الواحدة         */
+/* -------------------------------------- */
+.blog-card {
+    width: 350px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden; /* لقص الصورة الزائدة عن الحواف */
+    text-align: right; /* محاذاة النصوص لليمين */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+/* -------------------------------------- */
+/* 3. تنسيق الصورة والتاريخ             */
+/* -------------------------------------- */
+.blog-image-wrapper {
+    position: relative; /* لتمكين وضع التاريخ فوق الصورة */
+    height: 220px;
+    overflow: hidden;
+}
+
+.blog-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-date {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4169e1; /* لون أزرق للعنصر */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* -------------------------------------- */
+/* 4. تنسيق النصوص وزر اقرأ المزيد       */
+/* -------------------------------------- */
+.blog-title {
+    font-size: 1.25em;
+    font-family: 'cairo';
+    color: #000a6d;
+    margin: 20px 20px 10px 20px;
+    line-height: 1.4;
+}
+
+.blog-excerpt {
+    color: #6c757d;
+    font-size: 0.9em;
+    font-family: 'cairo';
+    padding: 0 20px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    color: #4169e1; /* نفس اللون الأزرق الأساسي للرابط */
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'cairo';
+    margin: 0 20px 30px 20px;
+    border-bottom: 2px solid #4169e1; /* خط تحت النص */
+    padding-bottom: 2px;
+}
+
+/* ====== Icon hover effect (scale + glow) ====== */
+/* أيقونات الروابط داخل بطاقات الأطباء */
+.doctor-card a i {
+  transition: transform 0.25s ease, filter 0.25s ease, color 0.25s ease;
+  color: #4169E1; /* لون افتراضي للأيقونات — عدّليه إذا تحبي */
+}
+.doctor-card a:hover i {
+  transform: scale(1.25);
+  filter: drop-shadow(0 6px 12px rgba(65,105,225,0.18));
+  color: #2a5fb3;
+}
+
+/* لو عندك أي أيقونات داخل header-links (عادة ما عندك) */
+.header-links a {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.header-links a:hover {
+  transform: translateY(-2px);
+}
+
+/* ====== subtle hover for read-more link ====== */
+.read-more {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.read-more:hover {
+  transform: translateY(-3px);
+  color: #274bdb;
+}
+@media (max-width: 900px) {
+    /* ------------------- Navbar Responsive ------------------- */
+    .navbar {
+        padding: 0 15px;
+    }
+    .header-links {
+        margin-right: 0; /* Reset margin for mobile */
+        margin-left: 0; /* Reset margin for mobile */
+    }
+
+    .logo h1 {
+        font-size: 18px;
+    }
+
+    .header-links {
+        display: none; /* Hide links by default */
+        flex-direction: column;
+        position: absolute;
+        top: 80px; /* Below the navbar */
+        right: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        z-index: 998;
+        text-align: center;
+    }
+
+    .header-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .header-links a {
+        margin: 10px 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .header-links a:last-child {
+        border-bottom: none;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger menu */
+        order: -1; /* Place it on the left side for RTL layout */
+    }}
