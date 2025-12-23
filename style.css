@@ -251,7 +251,7 @@ html {
 .schedule{
     display: flex;
 }
-.footer_list{
+.footer_list , .footer_list_conect{
     list-style: none;
 }
 .footer_list_titel{
@@ -553,9 +553,11 @@ direction: rtl;
     .footer_list{
         display: none;
     }
-    .footer_list {
-        text-align: center;
-    }
+    .footer_list_conect {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* يتوسط القائمة بالكامل في منتصف الشاشة */
+        padding: 0;}
 
     .footer_list_titel {
         margin-top: 20px;
@@ -566,6 +568,9 @@ direction: rtl;
     }
 
     .footer-item {
-        justify-content: center; /* Center contact items */
+        display: flex;
+        justify-content: flex-start; /* Center contact items */
+        width: 220px;
     }
+   
 }
